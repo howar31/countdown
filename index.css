@@ -1,3 +1,66 @@
 body {
 	padding-top: 50px;
 }
+
+#countdownwrap {
+	display: none;
+}
+
+#title {
+	font-size: 3em;
+}
+
+.totime {
+	font-size: 2em;
+}
+
+.nowtime {
+	font-size: 2em;
+}
+#totime_title.totime,
+#nowtime_title.nowtime {
+	font-size: 1.5em;
+	font-style: italic;
+	color: #AAA;
+}
+
+#countdown {
+	font-size: 8em;
+}
+#nowtime_wrap>span {
+	position: relative;
+}
+#countdown_year::after {
+	content: "Years";
+}
+#countdown_month::after {
+	content: "Months";
+}
+#countdown_day::after {
+	content: "Days";
+}
+#countdown_hour::after {
+	content: "Hours";
+}
+#countdown_minute::after {
+	content: "Minutes";
+}
+#countdown_second::after {
+	content: "Seconds";
+}
+#nowtime_wrap>span::after {
+	font-size: 2rem;
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+
+#createnewwrap {
+	display: block;
+}
+
+.row {
+	margin: 10px 0px;
+}

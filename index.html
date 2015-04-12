@@ -8,12 +8,16 @@
 	<title>Howar31 Countdown</title>
 
 	<!-- Bootstrap -->
-	<link href="bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 	<link href="index.css" rel="stylesheet">
 
 	<script src="jquery.min.js"></script>
-	<script src="bootstrap.min.js"></script>
 	<script src="index.js"></script>
+	<script src="moment-with-locales.js"></script>
+	<script src="moment-timezone.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,25 +36,82 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Howar31 Countdown</a>
+			<a class="navbar-brand" href="./">Howar31 Countdown</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="">Homepage</a></li>
+				<li><a href="./">New</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="https://github.com/howar31/PTTLottery" target="_blank">About Howar31 Countdown</a></li>
 						<li><a href="http://howar31.com" target="_blank">About Author</a></li>
-						<li class="divider"></li>
-						<li><a href="http://www.ptt.cc/bbs/Steam/M.1402567206.A.95D.html" target="_blank">PTT上架文章</a></li>
 					</ul>
 				</li>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
 </div>
-	<h1>Countdown</h1>
-
+<div class="container">
+<div id="countdownwrap">
+	<div class="row"><h1 id="title" class="col-md-12"></h1></div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div id="totime_title" class="totime col-md-1">Due</div>
+		<div id="totime_wrap" class="totime col-md-4">
+			<span class="year" id="totime_year"></span>/<span class="month" id="totime_month"></span>/<span class="day" id="totime_day"></span>
+			<span class="hour" id="totime_hour"></span>:<span class="minute" id="totime_minute"></span>:<span class="second" id="totime_second"></span>
+		</div>
+		<div id="nowtime_title" class="nowtime col-md-1">Now</div>
+		<div id="nowtime_wrap" class="nowtime col-md-4">
+			<span class="year" id="nowtime_year"></span>/<span class="month" id="nowtime_month"></span>/<span class="day" id="nowtime_day"></span>
+			<span class="hour" id="nowtime_hour"></span>:<span class="minute" id="nowtime_minute"></span>:<span class="second" id="nowtime_second"></span>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<div id="countdown" class="row">
+		<div id="nowtime_wrap" class="col-md-12">
+			<span class="year" id="countdown_year"></span>/<span class="month" id="countdown_month"></span>/<span class="day" id="countdown_day"></span> 
+			<span class="hour" id="countdown_hour"></span>:<span class="minute" id="countdown_minute"></span>:<span class="second" id="countdown_second"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div id="share_title" class="col-md-12">Share this countdown:</div>
+		<div id="share_content" class="col-md-12"><input type='text' class="form-control" id='sharelink' readonly /></div>
+	</div>
+</div>
+<div id="createnewwrap">
+	<div class="row">
+		<div class="form-group col-md-6">
+			<label for="intitle">Event Name</label>
+			<input type="text" class="form-control" id="intitle" name="intitle" />
+		</div>
+		<div class="form-group col-md-6">
+			<label for="intime">Due Time</label>
+			<input type='text' class="form-control" id='intime' />
+		</div>
+	</div>
+	<div class="row">
+		<div id="newresult_title" class="col-md-12">Share this countdown:</div>
+		<div id="newresult_content" class="col-md-10"><input type="text" class="form-control" id="newresult" name="newresult" readonly /></div>
+		<button type="button" class="btn btn-primary col-md-2" id="newresult_btn" onclick="location.href=document.getElementById('newresult').value">Countdown Now!</a>
+	</div>
+</div>
+</div>
+<script>
+	$(document).ready(function () {
+		updatenew();
+		$('#intime').datetimepicker()
+		.on('dp.change', function() {
+			updatenew();
+		});
+		$('#intitle').on('change keydown', function() {
+			updatenew();
+		});
+		document.getElementById('sharelink').onclick = function() {this.select();};
+		document.getElementById('newresult').onclick = function() {this.select();};
+	});
+	main();
+</script>
 </body>
 </html>
