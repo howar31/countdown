@@ -42,6 +42,13 @@
 			<ul class="nav navbar-nav">
 				<li><a href="./">New</a></li>
 				<li class="dropdown">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown">Example<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="./?time=2015Y04M12D11h02m32s&title=Howar31%20Countdown%20founded%20date">Howar31 Countdown founded date</a></li>
+						<li><a href="./?time=2015Y04M14D07h00m00s&title=Grand%20Theft%20Auto%20V%20PC%E7%89%88%20%E4%B8%8A%E5%B8%82">GTA V PC release date</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="https://github.com/howar31/countdown" target="_blank">About Howar31 Countdown</a></li>
@@ -52,7 +59,7 @@
 		</div><!--/.nav-collapse -->
 	</div>
 </div>
-<div class="container">
+<div id="wrap" class="container">
 <div id="countdownwrap">
 	<div class="row"><h1 id="title" class="col-md-12"></h1></div>
 	<div class="row">
@@ -70,6 +77,7 @@
 		<div class="col-md-1"></div>
 	</div>
 	<div id="countdown" class="row">
+		<div id="passed">Passed!</div>
 		<div id="nowtime_wrap" class="col-md-12">
 			<span class="year" id="countdown_year"></span>/<span class="month" id="countdown_month"></span>/<span class="day" id="countdown_day"></span> 
 			<span class="hour" id="countdown_hour"></span>:<span class="minute" id="countdown_minute"></span>:<span class="second" id="countdown_second"></span>
@@ -97,7 +105,12 @@
 		<button type="button" class="btn btn-primary col-md-2" id="newresult_btn" onclick="location.href=document.getElementById('newresult').value">Countdown Now!</a>
 	</div>
 </div>
+<div id="footer">
+	<p id="footer-1">Created and maintained by <a href="http://howar31.com" target="_blank">Howar31</a> @ 2015.04.12</p>
+	<p id="footer-2">This project is hosted on <a href="https://github.com/howar31/countdown" target="_blank">GitHub</a>.  Any bug report or suggestion is welcome.</p>
+</div><!-- #footer -->
 </div>
+
 <script>
 	$(document).ready(function () {
 		updatenew();
@@ -112,6 +125,13 @@
 		document.getElementById('newresult').onclick = function() {this.select();};
 	});
 	main();
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-8779590-13', 'auto');
+	ga('send', 'pageview');
 </script>
 </body>
 </html>

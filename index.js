@@ -12,12 +12,9 @@ function main() {
 function createnew() {
 	document.getElementById('countdownwrap').style.display = "none";
 	document.getElementById('createnewwrap').style.display = "block";
-	document.getElementById('title').innerHTML = "Hello";
-
 }
 
 function updatenew() {
-//	console.log($('#intime').data("DateTimePicker").date());
 	var urltitle = document.getElementById('intitle').value;
 	if (urltitle == "") {
 		document.getElementById('newresult_btn').disabled = true;
@@ -41,12 +38,10 @@ function countdown(title, totime) {
 	document.getElementById('createnewwrap').style.display = "none";
 	document.getElementById('sharelink').value = location;
 	var ptotime = parseTime(totime);
-//	console.log(ptotime);
 	if (!ptotime) {
 		createnew();
 		return;
 	}
-//	console.log(ptotime.length);
 	var totime_year = ptotime[1];
 	var totime_month = ptotime[2];
 	var totime_day = ptotime[3];
@@ -67,13 +62,10 @@ function countdown(title, totime) {
 		var totime_second = ptotime[6];
 		var totime_timezone = ptotime[7];
 	}
-//	console.log('6: '+totime_second);
-//	console.log('7: '+totime_timezone);
 	var regex = new RegExp(/([pn])([0-2]\d)([0-5]\d)|(Z)/);
 	var tmp = regex.exec(totime_timezone);
 	if (tmp) {
 		tmp = cleanArray(tmp);
-//		console.log(tmp);
 		if (tmp[1] == 'Z') {
 			totime_timezone = 0;
 		} else if (tmp[1] == 'p') {
@@ -82,10 +74,8 @@ function countdown(title, totime) {
 			totime_timezone = (parseInt(tmp[2]) * 60 + parseInt(tmp[3])) * (-1);
 		}
 	}
-//	console.log('tz: '+totime_timezone);
 
 	document.getElementById('title').innerHTML = title;
-//	document.getElementById('totime').innerHTML = pad(totime_year,4)+"/"+pad(totime_month,2)+"/"+pad(totime_day,2)+" "+pad(totime_hour,2)+":"+pad(totime_minute,2)+":"+pad(totime_second,2);
 	document.getElementById('totime_year').innerHTML = pad(totime_year,4);
 	document.getElementById('totime_month').innerHTML = pad(totime_month,2);
 	document.getElementById('totime_day').innerHTML = pad(totime_day,2);
@@ -103,14 +93,17 @@ function countdown(title, totime) {
 			var cd = moment.duration(moment().diff(theTime));
 			var passed = true;
 		}
-//		document.getElementById('nowtime').innerHTML = moment().format('YYYY/MM/DD HH:mm:ss');
+		if (passed) {
+			document.getElementById('passed').style.display = "block";
+		} else {
+			document.getElementById('passed').style.display = "none";
+		}
 		document.getElementById('nowtime_year').innerHTML = moment().format('YYYY');
 		document.getElementById('nowtime_month').innerHTML = moment().format('MM');
 		document.getElementById('nowtime_day').innerHTML = moment().format('DD');
 		document.getElementById('nowtime_hour').innerHTML = moment().format('HH');
 		document.getElementById('nowtime_minute').innerHTML = moment().format('mm');
 		document.getElementById('nowtime_second').innerHTML = moment().format('ss');
-//		document.getElementById('countdown').innerHTML = pad(cd.years(),4)+"/"+pad(cd.months(),2)+"/"+pad(cd.days(),2)+" "+pad(cd.hours(),2)+":"+pad(cd.minutes(),2)+":"+pad(cd.seconds(),2);
 		document.getElementById('countdown_year').innerHTML = pad(cd.years(),4);
 		document.getElementById('countdown_month').innerHTML = pad(cd.months(),2);
 		document.getElementById('countdown_day').innerHTML = pad(cd.days(),2);
@@ -155,9 +148,7 @@ function cleanArray(actual){
 }
 
 function parseTime(time) {
-//	var regex = new RegExp(/(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/);
 	var regex = new RegExp(/(\d{4})Y([01]*\d)M([0-3]*\d)D([0-2]*\d)h([0-5]*\d)m([0-5]*\d)s([pn][0-2]\d[0-5]\d|Z)*|(\d{4})Y([01]*\d)M([0-3]*\d)D([0-2]*\d)h([0-5]*\d)m([pn][0-2]\d[0-5]\d|Z)*/);
-//	var regex = new RegExp(/(\d{4})Y([01]*\d)M([0-3]*\d)D([0-2]*\d)h([0-5]*\d)m([0-5]*\d)s/);
 	rst = cleanArray(regex.exec(time));
 	return (rst)?rst:null;
 }
