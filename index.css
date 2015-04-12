@@ -49,25 +49,25 @@ body {
 #nowtime_wrap>span {
 	position: relative;
 }
-#countdown_year::after {
+#countdown_year::before {
 	content: "Years";
 }
-#countdown_month::after {
+#countdown_month::before {
 	content: "Months";
 }
-#countdown_day::after {
+#countdown_day::before {
 	content: "Days";
 }
-#countdown_hour::after {
+#countdown_hour::before {
 	content: "Hours";
 }
-#countdown_minute::after {
+#countdown_minute::before {
 	content: "Minutes";
 }
-#countdown_second::after {
+#countdown_second::before {
 	content: "Seconds";
 }
-#nowtime_wrap>span::after {
+#nowtime_wrap>span::before {
 	font-size: 2rem;
 	position: absolute;
 	bottom: -10px;
@@ -75,9 +75,26 @@ body {
 	width: 100%;
 	text-align: center;
 }
+.year::after,
+.month::after {
+	content: "/";
+}
+.hour::after,
+.minute::after {
+	content: ":";
+}
+
+.dimgrey {
+	color: #CCC;
+}
 
 #createnewwrap {
 	display: block;
+}
+
+#sharelink,
+#newresult {
+	cursor: pointer;
 }
 
 .row {
